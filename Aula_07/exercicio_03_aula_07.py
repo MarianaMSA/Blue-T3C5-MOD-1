@@ -12,10 +12,11 @@ quant_menores = 0
 for p in range( 1, 8) :
         ano_nasc = int(input(f'Ano de nascimento {p}ª pessoa: '))
         idade = ano_atual - ano_nasc
-        if idade >= 18:
-                quant_maiores += 1
-        else:
+        if idade < 18:
                 quant_menores += 1
+        else:
+                quant_maiores += 1
+        
                      
     
 print(f'{quant_maiores} são maiores de idade.')
