@@ -19,38 +19,55 @@
 # O total de votos em branco;
 # Qual candidato venceu a votação.
 
-# confereEleitor = input('Eleitor para a votação? [S/N]').upper()
-# # while confereEleitor == sim:
+votos = []  #Lista para receber os votos dos eleitores
 
-def autorizaVoto(idade,anoNasc):
-        idade = 2021 - anoNasc
+#Função para calcular a idade do eleitor e saber se o mesmo pode votar
+def autoriza_voto(anoNasc):
+        idade = 2021- anoNasc
         if idade >= 18 and idade <= 70:
-                return 'VOTO OBRIGATÓRIO'
-        elif idade >=16 and idade >=70:
-                return 'VOTO OPCIONAL'
+                return 'OBRIGATÓRIO'
+        elif idade >= 16 and idade >= 70:
+                return 'OPCIONAL'
         else: 
-            return 'VOTO NEGADO'
+            return 'NEGADO'
+
+  
+#Função que usa a função autoriza_voto para solicitar o número do candidato
+def votacao(autoriza_voto):
+                        anoNasc = int(input('Digite o ano do seu nascimento: '))
+                        autoriza_voto(anoNasc)
+                        if autoriza_voto(anoNasc) == 'OBRIGATÓRIO' or autoriza_voto(anoNasc) == 'OPCIONAL':
+                                voto = str(input('Digite o seu voto: 1- Maria, 2- Ana, 3- José, 4- Nulo e 5- Branco ')) #Input do voto
+                                votos.append(voto)             #Inclusãode voto na lista votos
+                                votosMaria = votos.count('1')  #Contagem no nº 1 na lista
+                                votosAna = votos.count('2')    #Contagem no nº 2 na lista
+                                votosJose = votos.count('3')   #Contagem no nº 3 na lista
+                                votosNulo = votos.count('4')   #Contagem no nº 4 na lista
+                                votosBranco = votos.count('5') #Contagem no nº 5 na lista
+                                print(votos)
+                                #print quantidade de votos cada candidato teve
+                                print(f'Quantidade de votos Maria : {votosMaria}, votos Ana : {votosAna}, votos José: {votosJose}, votos nulos : {votosNulo} e votos em branco : {votosBranco}')
+                             
+                        
+                                if votosMaria > votosAna and votosMaria > votosJose:
+                                        print(f'Maria foi eleita com {votosMaria} votos!!')
+                                elif votosAna > votosMaria and votosAna > votosJose:
+                                        print(f'Ana foi eleita com {votosAna} votos!!')
+                                elif votosJose > votosMaria and votosJose > votosAna:
+                                        print(f'Ana foi eleita com {votosAna} votos!!')   
+                        elif autoriza_voto(anoNasc) == 'NEGADO':
+                                print('Você não pode votar!')                          
+
+#Loop para inserir votações
+while True:
+        confereEleitor = input('Eleitor para a votação? [S/N] ').upper() #conferir se tem eleitor para votar
+        if confereEleitor in 'SN':
+                if confereEleitor == 'S':
+                        votacaoT = votacao(autoriza_voto) #chama a função votação                        
+                else: 
+                        
+                        break    # fim do loop
+        else: 
+                print('Digite S ou N!') #Solicita resposta S ou N
 
 
-def votacao(validacao, voto):
-    if autorizaVoto() == 'VOTO NEGADO':
-            return 'Você não pode votar'
-    else:
-        return votoEleitor
-
-
-
-nasc = int(input('Digite o ano do seu nascimento: '))
-validacao = autorizaVoto(0,nasc)
-print (validacao)
-
-
-def votacao(validacao, voto):
-    if autorizaVoto() == 'VOTO NEGADO':
-            return 'Você não pode votar'
-    else:
-        return votoEleitor
-
-votoEleitor = int(input('Diigite o seu voto: '))
-votacao(validacao)
-        
